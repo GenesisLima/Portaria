@@ -1,0 +1,109 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.ufpe.ntvru.portaria.login;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDecorator;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXSpinner;
+import com.jfoenix.controls.JFXTextField;
+
+import br.ufpe.ntvru.portaria.helpers.Routes;
+import br.ufpe.ntvru.portaria.model.User;
+import br.ufpe.ntvru.portaria.portariafx.PortariaFX;
+import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.Border;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
+
+/**
+ * FXML Controller class
+ *
+ * @author Gênesis Lima
+ */
+public class LoginController implements Initializable {
+
+    @FXML
+    private JFXButton btnLogin;
+    @FXML
+    private JFXSpinner loggingProgress;
+    @FXML
+    private JFXTextField txtUsername;
+    @FXML
+    private JFXPasswordField txtPassword;
+
+    /**
+     * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        loggingProgress.setVisible(false);
+    }
+
+    @FXML
+    private void loginAction(ActionEvent event) throws IOException {
+        loggingProgress.setVisible(true);
+        PauseTransition pauseTransition = new PauseTransition();
+        pauseTransition.setDuration(Duration.seconds(2));
+        pauseTransition.setOnFinished(ev -> {
+            System.out.println("Complte one");
+            completeLogin();
+            System.out.println("Complte two");
+        });
+        pauseTransition.play();
+
+    }
+
+    private boolean isValidInput() {
+        return (txtUsername.getText().trim().length() > 0) && (txtPassword.getText().trim().length() > 0);
+    }
+
+    private void completeLogin() {
+        loggingProgress.setVisible(false);
+        if (isValidInput()) {
+            try {
+                User user=new User();
+                user.setUsername(txtUsername.getText());
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource(Routes.MAINVIEW));
+                JFXDecorator decorator = new JFXDecorator(stage, root, false, false, true);
+                decorator.setCustomMaximize(false);
+                decorator.setBorder(Border.EMPTY);
+
+                Scene scene = new Scene(decorator);
+                scene.getStylesheets().add(PortariaFX.class.getResource("/br/ufpe/ntvru/portaria/styles/styles.css").toExternalForm());
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+
+                stage.setIconified(false);
+                stage.show();
+                //Hide login window
+                btnLogin.getScene().getWindow().hide();
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+
+}

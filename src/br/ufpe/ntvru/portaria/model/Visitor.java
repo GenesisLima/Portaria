@@ -29,6 +29,8 @@ public class Visitor implements Serializable{
 	
 	private String cpf;
 	
+	private String phone;
+	
 	private String product;
 	
 	private String accountable;
@@ -36,6 +38,8 @@ public class Visitor implements Serializable{
 	private String additionalInfo;
 
 	private Department department;
+	@Column(columnDefinition="CHAR(1) default 'A'")
+	private String status="A";
 	
 	@OneToMany
 	private List<Vehicle> vehicles;
@@ -95,6 +99,16 @@ public class Visitor implements Serializable{
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+	
+	
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -134,6 +148,15 @@ public class Visitor implements Serializable{
 
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

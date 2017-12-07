@@ -33,4 +33,10 @@ public class UserDAO extends DAO<User>{
 
 	}
 
+	@Override
+	public List<User> getByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

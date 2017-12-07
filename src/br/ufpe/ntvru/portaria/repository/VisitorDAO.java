@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.ufpe.ntvru.portaria.dao.DAO;
 import br.ufpe.ntvru.portaria.dao.ParameterizedTypeDAO;
-import br.ufpe.ntvru.portaria.model.User;
 import br.ufpe.ntvru.portaria.model.Visitor;
 
 public class VisitorDAO extends DAO<Visitor> {
@@ -12,6 +11,8 @@ public class VisitorDAO extends DAO<Visitor> {
 	
 	public VisitorDAO() {
 	 super.daoU	= new ParameterizedTypeDAO<>();
+	 super.daoU.reflect(this);
+
 	}
 	
 	@Override
@@ -27,7 +28,14 @@ public class VisitorDAO extends DAO<Visitor> {
 
 	@Override
 	public Visitor getById(int id) {
-		return (Visitor) manager.createQuery("select a from p_visitor a where a.status='A' and a.id="+id).getSingleResult();
+		return (Visitor) manager.createQuery("select a from p_visitor a where a.status='A' and a.id="+id,Visitor.class).getSingleResult();
+	}
+
+	@Override
+	public List<Visitor> getByName(String nameParam) {
+		
+		return (List<Visitor>) manager.createQuery("select a from p_visitor a where a.status='A' and a.name='"+nameParam+"'",Visitor.class).getResultList();
+
 	}
 
 }

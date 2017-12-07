@@ -199,6 +199,48 @@ public class WebcamViewerExample extends JFrame implements Runnable, WebcamListe
 		}
 	}
 
+	@Override
+	public void windowActivated(java.awt.event.WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 	

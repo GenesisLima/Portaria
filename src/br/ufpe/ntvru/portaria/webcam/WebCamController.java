@@ -5,6 +5,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamDiscoveryEvent;
@@ -16,11 +17,13 @@ import com.github.sarxos.webcam.WebcamPicker;
 import com.github.sarxos.webcam.WebcamResolution;
 import com.jfoenix.controls.JFXButton;
 
-import javafx.embed.swing.SwingNode;
+import br.ufpe.ntvru.portaria.helpers.Routes;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 public class WebCamController implements WebcamDiscoveryListener,ItemListener,WebcamListener,WindowListener{
 
@@ -192,17 +195,21 @@ public void windowOpened(WindowEvent e) {
 	
 }
     
-public void execute() {
+public void execute() throws IOException {
 	run();
 	System.out.println("RUN CAMERA ");
-	 final SwingNode swingNode = new SwingNode();
-	 Pane pane = new Pane();
-     pane.getChildren().add(swingNode); // Adding swing node
-	visitorsAPanePicture = new AnchorPane();
-	visitorsAPanePicture.getChildren().add(swingNode);
+//	 final SwingNode swingNode = new SwingNode();
+//	 Pane pane = new Pane();
+//     pane.getChildren().add(swingNode); // Adding swing node
+//	visitorsAPanePicture = new AnchorPane();
+//	visitorsAPanePicture.getChildren().add(swingNode);
+	 Parent root = FXMLLoader.load(getClass().getResource(Routes.CAMERAVIEW));
 	
-	new WebcamViewerExample().run();
+//	new WebcamViewerExample().run();
 	
 }
-    
+@FXML
+void takeVIsitorPicture(ActionEvent event) {
+   
+}
 }

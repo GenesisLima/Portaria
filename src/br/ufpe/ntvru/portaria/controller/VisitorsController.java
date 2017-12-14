@@ -95,7 +95,7 @@ public class VisitorsController implements Initializable {
 	    private TableColumn<Visitor, String> tableColumnVisitorPhone;
 	    
 	    private Stage stage;
-	    private Parent root;
+	   
 	    
 	    private Visitor visitor;
 	    
@@ -131,81 +131,11 @@ public class VisitorsController implements Initializable {
 	    }    
 	    
 	    
-	    private ImageView createImageView(ReadOnlyDoubleProperty widthProperty) {
-	    	
-	    	ImageView imageView = new ImageView();
-	    	
-	    	imageView.setPreserveRatio(true);
-	    	
-	    	imageView.fitWidthProperty().bind(widthProperty);
-	    	return imageView;
-	    }
-	    
-	    
-	  public WritableImage takePicture() {
-		  
-		  Webcam webcam = Webcam.getDefault();
-		  
-		  
-		  Dimension[] nonStandardResolutions = new Dimension[] {
-					WebcamResolution.PAL.getSize(),
-					WebcamResolution.HD720.getSize(),
-					new Dimension(2000, 1000),
-					new Dimension(1000, 500),
-				};
-		  
-		    webcam.setCustomViewSizes(nonStandardResolutions);
-			WebcamUtils.capture(webcam, fieldVisitorsName.getText().replaceAll("\\s+","").trim(), ImageUtils.FORMAT_PNG);
 
-			 BufferedImage image = webcam.getImage();
-		  return SwingFXUtils.toFXImage(image, null);
-	  } 
-	  
-	  public void preparePicture() {
-		  System.out.println("CAMERA READY");
-		  new WebcamViewerExample().run();
-		  
-	  }
-	  
-	  public void drawWebCamView() {
-		  
-		  System.out.println("DRAWING WEB CAM");
-//		  AnchorPane anchorPane = new AnchorPane();
-//		  anchorPane.setPrefHeight(459.0);
-//		  anchorPane.setPrefWidth(529.0);
-//		  
-//		  
-//		  JFXTabPane tabPane = new JFXTabPane();
-//		  tabPane.setPrefHeight(51.0);
-//		  tabPane.setPrefWidth(529.0);
-//		  
-//		  
-//		  Tab tab = new Tab();
-//		  tab.setText("Capturar Foto");
-//		  
-//		  tabPane.getTabs().add(tab);
-//		  
-//		  anchorPane.getChildren().add(tabPane);
-//		  
-		  Stage stage = new Stage(); 
-		  
-		  try {
-			  root =FXMLLoader.load(getClass().getResource(Routes.CAMERAVIEW));
-			  
-			   stage.setScene(new Scene(root));
-			   stage.setTitle("Tela de Captura.");
-			   stage.initModality(Modality.APPLICATION_MODAL);
-			  // System.out.println("SCENE "+visitorsPicture.getScene().getWindow());
-			   //stage.initOwner(visitorsPicture.getScene().getWindow());
-			   
-			   stage.showAndWait();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		  
-		  
-	  }
+	    
+	    
+
+
 	  
 	  
 	  

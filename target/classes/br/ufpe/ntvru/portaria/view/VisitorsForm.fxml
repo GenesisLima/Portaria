@@ -6,14 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufpe.ntvru.portaria.controller.VisitorsFormController">
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufpe.ntvru.portaria.controller.VisitorsFormController">
    <children>
       <GridPane layoutX="27.0" layoutY="26.0" prefHeight="183.0" prefWidth="291.0">
         <columnConstraints>
@@ -28,25 +26,9 @@
             <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="labelVIsitorName" text="Nome" GridPane.columnSpan="2" />
+            <Label fx:id="labelVisitorName" text="Nome" GridPane.columnSpan="2" />
             <Label fx:id="labelVisitorCpf" text="CPF" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             <Label fx:id="labelVisitorPhone" text="Telefone" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <Label fx:id="labelVIsitorAccountable" text="Responsável" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-            <Label fx:id="labelVIsitorAdditionalInfo" text="Observação" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-            <TextField fx:id="textFieldVisitorAccountable" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextArea fx:id="textAreaVisitorAdditionalInfo" prefHeight="90.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets top="5.0" />
-               </GridPane.margin>
-            </TextArea>
-            <TextField fx:id="textFieldVisitorPhone" prefHeight="34.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets bottom="5.0" />
-               </GridPane.margin>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
-            </TextField>
             <TextField fx:id="textFieldVisitorCpf" prefHeight="8.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" />
@@ -55,6 +37,22 @@
                   <Insets bottom="5.0" />
                </padding>
             </TextField>
+            <TextField fx:id="textFieldVisitorPhone" prefHeight="34.0" prefWidth="169.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </TextField>
+            <Label fx:id="labelVisitorAccountable" text="Responsável" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <TextField fx:id="textFieldVisitorAccountable" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="labelVisitorAdditionalInfo" text="Observação" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+            <TextArea fx:id="textAreaVisitorAdditionalInfo" prefHeight="90.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </TextArea>
             <TextField fx:id="textFieldVisitorName" maxWidth="400.0" prefHeight="22.0" prefWidth="214.0" GridPane.columnIndex="1">
                <padding>
                   <Insets bottom="5.0" />
@@ -62,17 +60,11 @@
             </TextField>
          </children>
       </GridPane>
-      <Group layoutX="48.0" layoutY="110.0" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="284.671875">
+      <Group layoutX="48.0" layoutY="114.0" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="22.671875">
          <children>
-            <Button fx:id="buttonConfirmar" layoutX="129.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleButtonConfirm" text="Confirmar" />
+            <Button fx:id="buttonConfirm" layoutX="129.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleButtonConfirm" text="Confirmar" />
             <Button fx:id="buttonCancelar" layoutX="208.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleButtonCancel" text="Cancelar" />
          </children>
       </Group>
-      <ImageView fx:id="drawWebCamView" fitHeight="150.0" fitWidth="200.0" layoutX="340.0" layoutY="53.0" onMouseClicked="#takePicture" pickOnBounds="true" preserveRatio="true">
-         <image>
-         <Image url="@../imgs/camera.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="340.0" layoutY="209.0" text="Clique na figura para tirar foto." />
    </children>
 </AnchorPane>

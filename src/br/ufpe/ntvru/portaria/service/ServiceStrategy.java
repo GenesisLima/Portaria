@@ -7,6 +7,7 @@ public interface ServiceStrategy<T> {
 	public void add(T t);
 	
 	public void drop(T t);
+	public void drop(int id);
 	
 	public List<T> getAll();
 	

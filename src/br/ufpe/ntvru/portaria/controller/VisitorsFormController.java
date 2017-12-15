@@ -4,9 +4,12 @@ package br.ufpe.ntvru.portaria.controller;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import javax.swing.SwingUtilities;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -79,7 +82,8 @@ public class VisitorsFormController implements Initializable{
     @FXML
     private TextField textFieldVisitorName;
 
-    private Parent root;
+
+	private Parent root;
 
 
 	    @FXML
@@ -202,24 +206,7 @@ public class VisitorsFormController implements Initializable{
 	    	return imageView;
 	    }
 	    
-		  public WritableImage takePicture() {
-			  
-			  Webcam webcam = Webcam.getDefault();
-			  
-			  
-			  Dimension[] nonStandardResolutions = new Dimension[] {
-						WebcamResolution.PAL.getSize(),
-						WebcamResolution.HD720.getSize(),
-						new Dimension(2000, 1000),
-						new Dimension(1000, 500),
-					};
-			  
-			    webcam.setCustomViewSizes(nonStandardResolutions);
-				WebcamUtils.capture(webcam, textFieldVisitorName.getText().replaceAll("\\s+","").trim(), ImageUtils.FORMAT_PNG);
 
-				 BufferedImage image = webcam.getImage();
-			  return SwingFXUtils.toFXImage(image, null);
-		  } 
 		  
 		  
 		  public void preparePicture() {
@@ -256,10 +243,18 @@ public class VisitorsFormController implements Initializable{
 				   stage.setScene(new Scene(root));
 				   stage.setTitle("Tela de Captura.");
 				   stage.initModality(Modality.APPLICATION_MODAL);
+//				   try {
+//					SwingUtilities.invokeAndWait(new WebCamController());
+//				} catch (InvocationTargetException | InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 				  // System.out.println("SCENE "+visitorsPicture.getScene().getWindow());
 				   //stage.initOwner(visitorsPicture.getScene().getWindow());
 				   
 				   stage.showAndWait();
+				   
+				   
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

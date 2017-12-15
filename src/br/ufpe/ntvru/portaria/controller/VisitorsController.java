@@ -158,101 +158,111 @@ public class VisitorsController implements Initializable {
 	    }    
 	    
 	    
-	    private ImageView createImageView(ReadOnlyDoubleProperty widthProperty) {
-	    	
-	    	ImageView imageView = new ImageView();
-	    	
-	    	imageView.setPreserveRatio(true);
-	    	
-	    	imageView.fitWidthProperty().bind(widthProperty);
-	    	return imageView;
-	    }
+//	    private ImageView createImageView(ReadOnlyDoubleProperty widthProperty) {
+//	    	
+//	    	ImageView imageView = new ImageView();
+//	    	
+//	    	imageView.setPreserveRatio(true);
+//	    	
+//	    	imageView.fitWidthProperty().bind(widthProperty);
+//	    	return imageView;
+//	    }
 	    
 	    
-	  public WritableImage takePicture() {
-		  
-		  Webcam webcam = Webcam.getDefault();
-		  
-		  
-		  Dimension[] nonStandardResolutions = new Dimension[] {
-					WebcamResolution.PAL.getSize(),
-					WebcamResolution.HD720.getSize(),
-					new Dimension(2000, 1000),
-					new Dimension(1000, 500),
-				};
-		  
-		    webcam.setCustomViewSizes(nonStandardResolutions);
-			WebcamUtils.capture(webcam, fieldVisitorsName.getText().replaceAll("\\s+","").trim(), ImageUtils.FORMAT_PNG);
-
-			 BufferedImage image = webcam.getImage();
-		  return SwingFXUtils.toFXImage(image, null);
-	  } 
+//	  public WritableImage takePicture() {
+//		  
+//		  Webcam webcam = Webcam.getDefault();
+//		  
+//		  
+//		  Dimension[] nonStandardResolutions = new Dimension[] {
+//					WebcamResolution.PAL.getSize(),
+//					WebcamResolution.HD720.getSize(),
+//					new Dimension(2000, 1000),
+//					new Dimension(1000, 500),
+//				};
+//		  
+//		    webcam.setCustomViewSizes(nonStandardResolutions);
+//			WebcamUtils.capture(webcam, fieldVisitorsName.getText().replaceAll("\\s+","").trim(), ImageUtils.FORMAT_PNG);
+//
+//			 BufferedImage image = webcam.getImage();
+//		  return SwingFXUtils.toFXImage(image, null);
+//	  } 
 	  
-	  public void preparePicture() {
+	  public JFXTextField getFieldVisitorsName() {
+			return fieldVisitorsName;
+		}
+
+
+		public void setFieldVisitorsName(JFXTextField fieldVisitorsName) {
+			this.fieldVisitorsName = fieldVisitorsName;
+		}
+
+
+	public void preparePicture() {
 		  System.out.println("CAMERA READY");
 		  new WebcamViewerExample().run();
 		  
 	  }
 	  
-	  public void drawWebCamView() {
-		  
-		  System.out.println("DRAWING WEB CAM");
-//		  AnchorPane anchorPane = new AnchorPane();
-//		  anchorPane.setPrefHeight(459.0);
-//		  anchorPane.setPrefWidth(529.0);
+//	  public void drawWebCamView() {
+//		  
+//		  System.out.println("DRAWING WEB CAM");
+////		  AnchorPane anchorPane = new AnchorPane();
+////		  anchorPane.setPrefHeight(459.0);
+////		  anchorPane.setPrefWidth(529.0);
+////		  
+////		  
+////		  JFXTabPane tabPane = new JFXTabPane();
+////		  tabPane.setPrefHeight(51.0);
+////		  tabPane.setPrefWidth(529.0);
+////		  
+////		  
+////		  Tab tab = new Tab();
+////		  tab.setText("Capturar Foto");
+////		  
+////		  tabPane.getTabs().add(tab);
+////		  
+////		  anchorPane.getChildren().add(tabPane);
+////		  
+//		  Stage stage = new Stage(); 
+//		  
+//		  try {
+//			  root =FXMLLoader.load(getClass().getResource(Routes.CAMERAVIEW));
+//			  
+//			   stage.setScene(new Scene(root));
+//			   stage.setTitle("Tela de Captura.");
+//			   stage.initModality(Modality.APPLICATION_MODAL);
+//			  // System.out.println("SCENE "+visitorsPicture.getScene().getWindow());
+//			   //stage.initOwner(visitorsPicture.getScene().getWindow());
+//			   
+//			   stage.showAndWait();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //		  
 //		  
-//		  JFXTabPane tabPane = new JFXTabPane();
-//		  tabPane.setPrefHeight(51.0);
-//		  tabPane.setPrefWidth(529.0);
-//		  
-//		  
-//		  Tab tab = new Tab();
-//		  tab.setText("Capturar Foto");
-//		  
-//		  tabPane.getTabs().add(tab);
-//		  
-//		  anchorPane.getChildren().add(tabPane);
-//		  
-		  Stage stage = new Stage(); 
-		  
-		  try {
-			  root =FXMLLoader.load(getClass().getResource(Routes.CAMERAVIEW));
-			  
-			   stage.setScene(new Scene(root));
-			   stage.setTitle("Tela de Captura.");
-			   stage.initModality(Modality.APPLICATION_MODAL);
-			  // System.out.println("SCENE "+visitorsPicture.getScene().getWindow());
-			   //stage.initOwner(visitorsPicture.getScene().getWindow());
-			   
-			   stage.showAndWait();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		  
-		  
-	  }
+//	  }
 	  
 	  
 	  
-	public void saveVisitor() {
-		visitor = new Visitor();
-		//visitorsStrategy = new ServiceStrategyImpl<Visitor>(new VisitorDAO());
-		visitor.setName(this.fieldVisitorsName.getText());
-		visitor.setCpf(this.fieldVisitorsCPF.getText());
-		visitor.setAccountable(this.fieldVisitorsAccountable.getText());
-		visitor.setAdditionalInfo(this.fieldVisitorsInfo.getText());
-		visitor.setProduct(this.fieldVisitorsProduct.getText());
-		visitorsService.add(visitor);
-		//visitor.set
-		
-	}  
+//	public void saveVisitor() {
+//		visitor = new Visitor();
+//		//visitorsStrategy = new ServiceStrategyImpl<Visitor>(new VisitorDAO());
+//		visitor.setName(this.fieldVisitorsName.getText());
+//		visitor.setCpf(this.fieldVisitorsCPF.getText());
+//		visitor.setAccountable(this.fieldVisitorsAccountable.getText());
+//		visitor.setAdditionalInfo(this.fieldVisitorsInfo.getText());
+//		visitor.setProduct(this.fieldVisitorsProduct.getText());
+//		visitorsService.add(visitor);
+//		//visitor.set
+//		
+//	}  
 	
 	
-	public void searchVisitor() {
-	
-		};
+//	public void searchVisitor() {
+//	
+//		};
 		
 	    public void selectItemTableViewVisitors(Visitor visitor){
 	        if (visitor != null) {
@@ -316,7 +326,7 @@ public void handleButtonInsert() throws IOException {
 
 public boolean showFXMLAnchorPaneRegisterVisitorForm(Visitor visitor) throws IOException {
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(VisitorsController.class.getResource("/br/ufpe/ntvru/portaria/view/VisitorForm.fxml"));
+    loader.setLocation(VisitorsController.class.getResource("/br/ufpe/ntvru/portaria/view/VisitorsForm.fxml"));
     AnchorPane page = (AnchorPane) loader.load();
 
     
@@ -342,8 +352,10 @@ public boolean showFXMLAnchorPaneRegisterVisitorForm(Visitor visitor) throws IOE
 @FXML
 public void handleButtonRemove() {
     Visitor visitor = tableViewVisitors.getSelectionModel().getSelectedItem();
+   
     if (visitor!= null) {
-        visitorsService.drop(visitor);
+    	int id = visitor.getId();
+        visitorsService.drop(id);
         loadTableViewVisitor();
     } else {
         Alert alert = new Alert(Alert.AlertType.ERROR);

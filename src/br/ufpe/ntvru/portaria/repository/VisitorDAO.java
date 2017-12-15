@@ -21,9 +21,10 @@ public class VisitorDAO extends DAO<Visitor> {
 	}
 
 	@Override
-	public void remove(Visitor visitor) {
-		manager.createQuery("update p_visitor t set t.status='D' where t.id="+visitor.getId()).executeUpdate();
-		
+	public void remove(int id) {
+		 manager.getTransaction().begin();		
+		manager.createQuery("update p_visitor t set t.status='D' where t.id="+id).executeUpdate();
+		 manager.getTransaction().commit();
 	}
 
 	@Override
@@ -36,6 +37,12 @@ public class VisitorDAO extends DAO<Visitor> {
 		
 		return (List<Visitor>) manager.createQuery("select a from p_visitor a where a.status='A' and a.name='"+nameParam+"'",Visitor.class).getResultList();
 
+	}
+
+	@Override
+	public void remove(Visitor t) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

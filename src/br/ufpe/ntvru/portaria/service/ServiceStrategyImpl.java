@@ -23,6 +23,12 @@ public class ServiceStrategyImpl<T> implements ServiceStrategy<T>{
 		dao.remove(t);
 		
 	}
+	
+	@Override
+	public void drop(int id) {
+		dao.remove(id);
+		
+	}
 
 	@Override
 	public List<T> getAll() {

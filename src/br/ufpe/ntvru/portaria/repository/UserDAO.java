@@ -26,6 +26,12 @@ public class UserDAO extends DAO<User>{
 		manager.remove(user);
 		
 	}
+	
+	@Override
+	public void remove(int id) {
+		manager.remove(id);
+		
+	}
 
 	@Override
 	public User getById(int id) {

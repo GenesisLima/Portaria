@@ -6,19 +6,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<<<<<<< HEAD
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-=======
->>>>>>> 0291acbaee6945e01f9688a287b16953649917fc
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<<<<<<< HEAD
 <AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufpe.ntvru.portaria.controller.VisitorsFormController">
-=======
 <AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufpe.ntvru.portaria.controller.VisitorsFormController">
 >>>>>>> 0291acbaee6945e01f9688a287b16953649917fc
    <children>
@@ -69,24 +64,20 @@
             </TextField>
          </children>
       </GridPane>
-<<<<<<< HEAD
+
       <Group layoutX="48.0" layoutY="110.0" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="284.671875">
-=======
+       </Group>
       <Group layoutX="48.0" layoutY="114.0" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="22.671875">
->>>>>>> 0291acbaee6945e01f9688a287b16953649917fc
          <children>
-            <Button fx:id="buttonConfirmar" layoutX="129.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleButtonConfirm" text="Confirmar" />
-            <Button fx:id="buttonCancelar" layoutX="208.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleButtonCancel" text="Cancelar" />
+            <Button fx:id="buttonConfirmar" layoutX="129.0" layoutY="137.0" mnemonicParsing="false" onAction="" text="Confirmar" />
+            <Button fx:id="buttonCancelar" layoutX="208.0" layoutY="137.0" mnemonicParsing="false" onAction="" text="Cancelar" />
          </children>
       </Group>
-<<<<<<< HEAD
-      <ImageView fx:id="drawWebCamView" fitHeight="150.0" fitWidth="200.0" layoutX="340.0" layoutY="53.0" onMouseClicked="#takePicture" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="drawWebCamView" fitHeight="150.0" fitWidth="200.0" layoutX="340.0" layoutY="53.0" onMouseClicked="" pickOnBounds="true" preserveRatio="true">
          <image>
          <Image url="@../imgs/camera.png" />
          </image>
       </ImageView>
       <Label layoutX="340.0" layoutY="209.0" text="Clique na figura para tirar foto." />
-=======
->>>>>>> 0291acbaee6945e01f9688a287b16953649917fc
    </children>
 </AnchorPane>

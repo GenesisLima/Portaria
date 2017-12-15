@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.transaction.Transactional;
 
 import br.ufpe.ntvru.portaria.dao.jpa.EntityManagerProvider;
 import br.ufpe.ntvru.portaria.model.User;
@@ -35,6 +36,7 @@ public abstract class DAO<T> {
 //		}
 	 
 	 public abstract void remove(T t);
+	 public abstract void remove(int id);
 	 
 	 public abstract T getById(int id);
 	 

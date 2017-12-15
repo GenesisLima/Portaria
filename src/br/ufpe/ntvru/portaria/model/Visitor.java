@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 @Entity(name="p_visitor")
 public class Visitor implements Serializable{
@@ -36,8 +37,9 @@ public class Visitor implements Serializable{
 	private String accountable;
 	
 	private String additionalInfo;
-
-	private Department department;
+    @OneToMany
+	private List<Department> department;
+	
 	@Column(columnDefinition="CHAR(1) default 'A'")
 	private String status="A";
 	
@@ -92,15 +94,17 @@ public class Visitor implements Serializable{
 		this.additionalInfo = additionalInfo;
 	}
 
-	public Department getDepartment() {
+
+	
+	
+
+	public List<Department> getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(Department department) {
+	public void setDepartment(List<Department> department) {
 		this.department = department;
 	}
-	
-	
 
 	public String getPhone() {
 		return phone;

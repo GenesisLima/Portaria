@@ -2,13 +2,31 @@ package br.ufpe.ntvru.portaria.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity(name="p_department")
 public class Department implements Serializable {
 
+	@Id
 	private int id;
 	
 	private String name;
 	
 	private String description;
+	
+	@Column(columnDefinition="CHAR(1) default 'A'")
+	private String status="A";
+	
+	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public int getId() {
 		return id;

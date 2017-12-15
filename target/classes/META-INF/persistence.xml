@@ -6,11 +6,11 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
   
   <properties>
-    <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/visitors" />
+    <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/portaria" />
     <property name="hibernate.connection.username" value="postgres" />
     <property name="hibernate.connection.password" value="postgres" />
     <property name="hibernate.format_sql" value="true"/>
-   <!--  <property name="hibernate.hbm2ddl.auto" value="create"/> -->
+   <!--  <property name="hibernate.hbm2ddl.auto" value="validate"/> -->
     <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
     <property name="hibernate.show_sql" value="true" />
     <property name="hibernate.format_sql" value="true" />

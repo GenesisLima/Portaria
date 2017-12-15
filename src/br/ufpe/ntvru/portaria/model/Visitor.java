@@ -42,18 +42,16 @@ public class Visitor implements Serializable{
 	private String accountable;
 	
 	private String additionalInfo;
-<<<<<<< HEAD
+
     @OneToMany
 	private List<Department> department;
 	
-	@Column(columnDefinition="CHAR(1) default 'A'")
-=======
+	
 
 //	@OneToOne
 //	private Department department;
 	
 	@Column(columnDefinition=" CHAR(1) DEFAULT 'A' ")
->>>>>>> 0291acbaee6945e01f9688a287b16953649917fc
 	private String status="A";
 	
 	@OneToMany
@@ -107,7 +105,6 @@ public class Visitor implements Serializable{
 		this.additionalInfo = additionalInfo;
 	}
 
-<<<<<<< HEAD
 
 	
 	
@@ -118,14 +115,8 @@ public class Visitor implements Serializable{
 
 	public void setDepartment(List<Department> department) {
 		this.department = department;
-=======
-//	public Department getDepartment() {
-//		return department;
-//	}
-//
-//	public void setDepartment(Department department) {
-//		this.department = department;
-//	}
+
+	}
 	
 	
 
@@ -135,16 +126,9 @@ public class Visitor implements Serializable{
 
 	public void setPhone(String phone) {
 		this.phone = phone;
->>>>>>> 0291acbaee6945e01f9688a287b16953649917fc
 	}
 
-	public String getPhone() {
-		return phone;
-	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

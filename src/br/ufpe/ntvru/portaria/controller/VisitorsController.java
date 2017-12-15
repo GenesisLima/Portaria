@@ -130,10 +130,10 @@ public class VisitorsController implements Initializable {
 	    private ServiceStrategy<Vehicle> vehicleStrategy;
 
 	    //JDBC Postgres Configuration
-	    private final Database database = DatabaseFactory.getDatabase("postgresql");
-	    private final Connection connection = database.connect();
-	    private final VisitorJDBCDAO visitorDAO = new VisitorJDBCDAO();
-	   
+//	    private final Database database = DatabaseFactory.getDatabase("postgresql");
+//	    private final Connection connection = database.connect();
+//	    private final VisitorJDBCDAO visitorDAO = new VisitorJDBCDAO();
+//	   
 	    
 	    /**
 	     * Initializes the controller class.
@@ -142,7 +142,7 @@ public class VisitorsController implements Initializable {
 	     */
 	    @Override
 	    public void initialize(URL url, ResourceBundle rb) {
-	    	visitorDAO.setConnection(connection);
+	    	//visitorService.setConnection(connection);
 	    	tableViewVisitors.getSelectionModel().selectedItemProperty().addListener(
 	                (observable, oldValue, newValue) -> selectItemTableViewVisitors(newValue));
 	        // Populate Combobox with static options,
@@ -294,7 +294,7 @@ public void searchVisitorOnEnter(ActionEvent e){
 public void loadTableViewVisitor() {
 	
 	//List<Visitor> visitorsList = visitorsService.getAll();
-	List<Visitor> visitorsList = visitorDAO.list();
+	List<Visitor> visitorsList = visitorsService.getAll();
 	ObservableList<Visitor> visitors = FXCollections.observableArrayList(visitorsList);
 	tableColumnVisitorName.setCellValueFactory(new PropertyValueFactory<>("name"));
 	tableColumnVisitorPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));  
@@ -311,7 +311,7 @@ public void handleButtonInsert() throws IOException {
      boolean buttonConfirmClicked = showFXMLAnchorPaneRegisterVisitorForm(visitor);
      if (buttonConfirmClicked) {
     	// visitorsService.add(visitor);
-    	 visitorDAO.insert(visitor);
+    	 visitorsService.add(visitor);
         loadTableViewVisitor();
      }
 }
@@ -346,7 +346,7 @@ public boolean showFXMLAnchorPaneRegisterVisitorForm(Visitor visitor) throws IOE
 public void handleButtonRemove() {
     Visitor visitor = tableViewVisitors.getSelectionModel().getSelectedItem();
     if (visitor!= null) {
-        visitorDAO.remove(visitor);
+        visitorsService.drop(visitor);
         loadTableViewVisitor();
     } else {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -361,7 +361,7 @@ public void handleButtonUpdate() throws IOException {
     if (visitor!= null) {
         boolean buttonConfirmarClicked = showFXMLAnchorPaneRegisterVisitorForm(visitor);
         if (buttonConfirmarClicked) {
-            visitorDAO.update(visitor);
+            visitorsService.add(visitor);
             loadTableViewVisitor();
         }
     } else {

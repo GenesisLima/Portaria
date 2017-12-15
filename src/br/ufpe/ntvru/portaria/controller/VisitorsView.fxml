@@ -88,7 +88,7 @@
                                     <JFXTextField fx:id="fieldVisitorsProduct" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="46.0" promptText="Produto" unFocusColor="#868282" />
                                     <JFXTextField fx:id="fieldVisitorsBranchLine" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="82.0" promptText="Ramal" unFocusColor="#868282" />
                                     <JFXTextField fx:id="fieldVisitorsAccountable" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="118.0" promptText="Responsável" unFocusColor="#868282" />
-                                    <JFXTextArea fx:id="fieldVisitorsInfo" maxWidth="404.0" minWidth="404.0" prefHeight="98.0" prefWidth="404.0" promptText="Informações Adicionais" />
+                                    <JFXTextArea fx:id="fieldVisitorsInfo" maxWidth="404.0" minWidth="404.0" prefHeight="31.0" prefWidth="250.0" promptText="Informações Adicionais" />
                                  </children>
                                  <padding>
                                     <Insets left="20.0" top="10.0" />
@@ -165,13 +165,13 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="388.0" prefWidth="1103.0">
                                  <children>
-                                    <TextField layoutX="787.0" layoutY="14.0" prefHeight="30.0" prefWidth="302.0" promptText="Buscar Visitante" styleClass="search-box" />
-                                    <TableView layoutX="11.0" layoutY="53.0" prefHeight="326.0" prefWidth="1080.0">
+                                    <TextField fx:id="fieldVisitorsSearchByName" layoutX="787.0" layoutY="14.0" onAction="#searchVisitorOnEnter" prefHeight="30.0" prefWidth="302.0" promptText="Buscar Visitante" styleClass="search-box" />
+                                    <TableView fx:id="visitorsTableView" layoutX="11.0" layoutY="53.0" prefHeight="326.0" prefWidth="1080.0">
                                       <columns>
-                                        <TableColumn fx:id="nameColumn" editable="false" prefWidth="389.0" text="NOME" />
-                                          <TableColumn fx:id="accountableColumn" editable="false" prefWidth="168.0" sortable="false" text="RESPONSÁVEL" />
-                                          <TableColumn fx:id="branchLinaColumn" editable="false" prefWidth="171.0" sortable="false" text="RAMAL" />
-                                          <TableColumn fx:id="vehicleColumn" editable="false" prefWidth="250.0" sortable="false" text="VEÍCULO" />
+                                        <TableColumn fx:id="visitorsNameColumn" editable="false" prefWidth="389.0" text="NOME" />
+                                          <TableColumn fx:id="visitorsAccountableColumn" editable="false" prefWidth="168.0" sortable="false" text="RESPONSÁVEL" />
+                                          <TableColumn fx:id="visitorsBranchLinaColumn" editable="false" prefWidth="171.0" sortable="false" text="RAMAL" />
+                                          <TableColumn fx:id="visitorsVehicleColumn" editable="false" prefWidth="250.0" sortable="false" text="VEÍCULO" />
                                       </columns>
                                     </TableView>
                                  </children>

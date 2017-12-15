@@ -24,14 +24,14 @@ public class PortariaFX extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(Routes.LOGINVIEW));
+        Parent root = FXMLLoader.load(getClass().getResource(Routes.MAINVIEW));
         JFXDecorator decorator=new JFXDecorator(stage, root, false, false, true);
         decorator.setCustomMaximize(false);
         decorator.setBorder(Border.EMPTY);
         
         Scene scene = new Scene(decorator);
-        scene.getStylesheets().add(PortariaFX.class.getResource("/br/ufpe/ntvru/portaria/styles/styles.css").toExternalForm());
-        stage.initStyle(StageStyle.UNDECORATED);
+       // scene.getStylesheets().add(PortariaFX.class.getResource("/br/ufpe/ntvru/portaria/styles/styles.css").toExternalForm());
+       // stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         
         stage.setIconified(false);

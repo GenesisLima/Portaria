@@ -8,16 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity(name="p_visitor")
 public class Visitor implements Serializable{
 
-	/**
+
+	 
+	
+	   /**
 	 * 
 	 */
-	private static final long serialVersionUID = 6421214647194045137L;
+	private static final long serialVersionUID = -3263399618825638629L;
 
 	@Id
 	   @SequenceGenerator(name="pk_seq_visitor",sequenceName="p_seq_visitor",allocationSize=1)
@@ -29,13 +34,19 @@ public class Visitor implements Serializable{
 	
 	private String cpf;
 	
+	private String phone;
+	
 	private String product;
 	
 	private String accountable;
 	
 	private String additionalInfo;
 
-	private Department department;
+//	@OneToOne
+//	private Department department;
+	
+	@Column(columnDefinition=" CHAR(1) DEFAULT 'A' ")
+	private String status="A";
 	
 	@OneToMany
 	private List<Vehicle> vehicles;
@@ -88,12 +99,22 @@ public class Visitor implements Serializable{
 		this.additionalInfo = additionalInfo;
 	}
 
-	public Department getDepartment() {
-		return department;
+//	public Department getDepartment() {
+//		return department;
+//	}
+//
+//	public void setDepartment(Department department) {
+//		this.department = department;
+//	}
+	
+	
+
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public static long getSerialversionuid() {
@@ -122,10 +143,12 @@ public class Visitor implements Serializable{
 		return true;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Visitor [id=" + id + ", name=" + name + ", cpf=" + cpf + ", product=" + product + ", accountable="
-				+ accountable + ", additionalInfo=" + additionalInfo + ", department=" + department + "]";
+		return "Visitor [id=" + id + ", name=" + name + ", cpf=" + cpf + ", phone=" + phone + ", product=" + product
+				+ ", accountable=" + accountable + ", additionalInfo=" + additionalInfo + ", status=" + status + ", vehicles=" + vehicles + "]";
 	}
 
 	public List<Vehicle> getVehicles() {
@@ -134,6 +157,15 @@ public class Visitor implements Serializable{
 
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

@@ -20,7 +20,8 @@ public abstract class DAO<T> {
 		 manager.getTransaction().begin();
 		 manager.merge(t);
 		 manager.getTransaction().commit();
-		 factory.close();
+		// manager.close();
+		// factory.close();
 	 }
 		
 	 
@@ -36,5 +37,7 @@ public abstract class DAO<T> {
 	 public abstract void remove(T t);
 	 
 	 public abstract T getById(int id);
+	 
+	 public abstract List<T> getByName(String name);
 	
 }

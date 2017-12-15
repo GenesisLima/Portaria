@@ -1,5 +1,7 @@
 package br.ufpe.ntvru.portaria.service;
 
+import java.util.List;
+
 import br.ufpe.ntvru.portaria.dao.DAO;
 
 public class ServiceStrategyImpl<T> implements ServiceStrategy<T>{
@@ -23,14 +25,19 @@ public class ServiceStrategyImpl<T> implements ServiceStrategy<T>{
 	}
 
 	@Override
-	public void getAll() {
-		dao.list();
+	public List<T> getAll() {
+		return dao.list();
 		
 	}
 
 	@Override
 	public T getById(int id) {
 	return dao.getById(id);
+	}
+	@Override
+	public List<T> getByName(String name) {
+		
+		return dao.getByName(name);
 	}
 
 }

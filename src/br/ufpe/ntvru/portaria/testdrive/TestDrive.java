@@ -1,12 +1,21 @@
 package br.ufpe.ntvru.portaria.testdrive;
 
+<<<<<<< HEAD
 import java.util.List;
 
+=======
+import java.sql.Connection;
+import java.util.List;
+
+import br.ufpe.ntvru.portaria.dao.jdbc.VisitorJDBCDAO;
+>>>>>>> 0291acbaee6945e01f9688a287b16953649917fc
 import br.ufpe.ntvru.portaria.model.User;
 import br.ufpe.ntvru.portaria.model.Visitor;
 import br.ufpe.ntvru.portaria.repository.VisitorDAO;
 import br.ufpe.ntvru.portaria.service.ServiceStrategy;
 import br.ufpe.ntvru.portaria.service.ServiceStrategyImpl;
+import br.ufpe.ntvu.portaria.jdbc.database.Database;
+import br.ufpe.ntvu.portaria.jdbc.database.DatabaseFactory;
 
 public class TestDrive {
 
@@ -44,6 +53,18 @@ public class TestDrive {
 		List<Visitor> visitors =  visitorsStrategy.getAll();
 		System.out.println("VISITORS "+visitors);
 		
+<<<<<<< HEAD
+=======
+		 //JDBC Postgres Configuration
+	    final Database database = DatabaseFactory.getDatabase("postgresql");
+	     final Connection connection = database.connect();
+	     final VisitorJDBCDAO visitorDAO = new VisitorJDBCDAO();
+	     
+	     visitorDAO.setConnection(connection);
+	     System.out.println(visitorDAO.list());
+	   
+		
+>>>>>>> 0291acbaee6945e01f9688a287b16953649917fc
 		
 	}
 

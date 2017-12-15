@@ -32,9 +32,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -85,7 +86,26 @@ public class VisitorsController implements Initializable {
 	    @FXML
 	    private JFXTextField fieldVehiclePlate;
 
-	   
+	    @FXML
+	    private Label labelVisitorId;
+
+	    @FXML
+	    private Label labelVisitorName;
+
+	    @FXML
+	    private Label labelVisitorCPF;
+
+	    @FXML
+	    private Label labelVisitorPhone;
+
+	    @FXML
+	    private Label labelVIsitorAccountable;
+
+	    @FXML
+	    private Label labelVisitorAdditionalInfo;
+
+	    @FXML
+	    private Label vehicleRegistrationPlate;
 	    
 
 	    @FXML
@@ -95,18 +115,21 @@ public class VisitorsController implements Initializable {
 	    private TableColumn<Visitor, String> tableColumnVisitorPhone;
 	    
 	    private Stage stage;
-	   
+	    private Parent root;
 	    
 	    private Visitor visitor;
 	    
 	    private Vehicle vehicle;
 	    
-	    private ServiceStrategy<Visitor> visitorsStrategy = new ServiceStrategyImpl<Visitor>(new VisitorDAO());
+	    private ServiceStrategy<Visitor> visitorsService= new ServiceStrategyImpl<Visitor>(new VisitorDAO());
 	    
 	    private ServiceStrategy<Vehicle> vehicleStrategy;
 
-	
-	   
+	    //JDBC Postgres Configuration
+//	    private final Database database = DatabaseFactory.getDatabase("postgresql");
+//	    private final Connection connection = database.connect();
+//	    private final VisitorJDBCDAO visitorDAO = new VisitorJDBCDAO();
+//	   
 	    
 	    /**
 	     * Initializes the controller class.
@@ -115,6 +138,9 @@ public class VisitorsController implements Initializable {
 	     */
 	    @Override
 	    public void initialize(URL url, ResourceBundle rb) {
+	    	//visitorService.setConnection(connection);
+	    	tableViewVisitors.getSelectionModel().selectedItemProperty().addListener(
+	                (observable, oldValue, newValue) -> selectItemTableViewVisitors(newValue));
 	        // Populate Combobox with static options,
 //	    	comboVehicleBrand.getItems().addAll("Pychologist","Psychiatric","Gynaecologist","Pathologist","Cardiologist","Orginologist","unspecified");
 //	    	comboVehicleBrand.getSelectionModel().selectLast();
@@ -131,11 +157,81 @@ public class VisitorsController implements Initializable {
 	    }    
 	    
 	    
-
+	    private ImageView createImageView(ReadOnlyDoubleProperty widthProperty) {
+	    	
+	    	ImageView imageView = new ImageView();
+	    	
+	    	imageView.setPreserveRatio(true);
+	    	
+	    	imageView.fitWidthProperty().bind(widthProperty);
+	    	return imageView;
+	    }
 	    
 	    
+	  public WritableImage takePicture() {
+		  
+		  Webcam webcam = Webcam.getDefault();
+		  
+		  
+		  Dimension[] nonStandardResolutions = new Dimension[] {
+					WebcamResolution.PAL.getSize(),
+					WebcamResolution.HD720.getSize(),
+					new Dimension(2000, 1000),
+					new Dimension(1000, 500),
+				};
+		  
+		    webcam.setCustomViewSizes(nonStandardResolutions);
+			WebcamUtils.capture(webcam, fieldVisitorsName.getText().replaceAll("\\s+","").trim(), ImageUtils.FORMAT_PNG);
 
-
+			 BufferedImage image = webcam.getImage();
+		  return SwingFXUtils.toFXImage(image, null);
+	  } 
+	  
+	  public void preparePicture() {
+		  System.out.println("CAMERA READY");
+		  new WebcamViewerExample().run();
+		  
+	  }
+	  
+	  public void drawWebCamView() {
+		  
+		  System.out.println("DRAWING WEB CAM");
+//		  AnchorPane anchorPane = new AnchorPane();
+//		  anchorPane.setPrefHeight(459.0);
+//		  anchorPane.setPrefWidth(529.0);
+//		  
+//		  
+//		  JFXTabPane tabPane = new JFXTabPane();
+//		  tabPane.setPrefHeight(51.0);
+//		  tabPane.setPrefWidth(529.0);
+//		  
+//		  
+//		  Tab tab = new Tab();
+//		  tab.setText("Capturar Foto");
+//		  
+//		  tabPane.getTabs().add(tab);
+//		  
+//		  anchorPane.getChildren().add(tabPane);
+//		  
+		  Stage stage = new Stage(); 
+		  
+		  try {
+			  root =FXMLLoader.load(getClass().getResource(Routes.CAMERAVIEW));
+			  
+			   stage.setScene(new Scene(root));
+			   stage.setTitle("Tela de Captura.");
+			   stage.initModality(Modality.APPLICATION_MODAL);
+			  // System.out.println("SCENE "+visitorsPicture.getScene().getWindow());
+			   //stage.initOwner(visitorsPicture.getScene().getWindow());
+			   
+			   stage.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
+		  
+	  }
 	  
 	  
 	  
@@ -147,7 +243,7 @@ public class VisitorsController implements Initializable {
 		visitor.setAccountable(this.fieldVisitorsAccountable.getText());
 		visitor.setAdditionalInfo(this.fieldVisitorsInfo.getText());
 		visitor.setProduct(this.fieldVisitorsProduct.getText());
-		visitorsStrategy.add(visitor);
+		visitorsService.add(visitor);
 		//visitor.set
 		
 	}  
@@ -157,13 +253,26 @@ public class VisitorsController implements Initializable {
 	
 		};
 		
-	
+	    public void selectItemTableViewVisitors(Visitor visitor){
+	        if (visitor != null) {
+	            labelVisitorId.setText(String.valueOf(visitor.getId()));
+	            labelVisitorName.setText(visitor.getName());
+	            labelVisitorCPF.setText(visitor.getCpf());
+	            labelVisitorPhone.setText(visitor.getPhone());
+	        } else {
+	            labelVisitorId.setText("");
+	            labelVisitorName.setText("");
+	            labelVisitorCPF.setText("");
+	            labelVisitorPhone.setText("");
+	        }
+
+	    }
 
 @FXML
 public void searchVisitorOnEnter(ActionEvent e){
          
 	System.out.println("SEARCHING VISITOR...");
-	List<Visitor> visitorsList = visitorsStrategy.getAll();
+	List<Visitor> visitorsList = visitorsService.getAll();
 	ObservableList<Visitor> visitors = FXCollections.observableArrayList(visitorsList);
 	System.out.println("NAME"+visitorsList.size());
 	System.out.println("NAME"+visitors.size());
@@ -180,7 +289,8 @@ public void searchVisitorOnEnter(ActionEvent e){
 
 public void loadTableViewVisitor() {
 	
-	List<Visitor> visitorsList = visitorsStrategy.getAll();
+	//List<Visitor> visitorsList = visitorsService.getAll();
+	List<Visitor> visitorsList = visitorsService.getAll();
 	ObservableList<Visitor> visitors = FXCollections.observableArrayList(visitorsList);
 	tableColumnVisitorName.setCellValueFactory(new PropertyValueFactory<>("name"));
 	tableColumnVisitorPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));  
@@ -194,9 +304,10 @@ public void loadTableViewVisitor() {
 @FXML
 public void handleButtonInsert() throws IOException {
 	 Visitor visitor = new Visitor();
-     boolean buttonConfirmarClicked = showFXMLAnchorPaneRegisterVisitorForm(visitor);
-     if (buttonConfirmarClicked) {
-    	 visitorsStrategy.add(visitor);
+     boolean buttonConfirmClicked = showFXMLAnchorPaneRegisterVisitorForm(visitor);
+     if (buttonConfirmClicked) {
+    	// visitorsService.add(visitor);
+    	 visitorsService.add(visitor);
         loadTableViewVisitor();
      }
 }
@@ -229,12 +340,31 @@ public boolean showFXMLAnchorPaneRegisterVisitorForm(Visitor visitor) throws IOE
 
 @FXML
 public void handleButtonRemove() {
-
+    Visitor visitor = tableViewVisitors.getSelectionModel().getSelectedItem();
+    if (visitor!= null) {
+        visitorsService.drop(visitor);
+        loadTableViewVisitor();
+    } else {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Por favor, escolha um visitante na Tabela!");
+        alert.show();
+    }
 }
 
 @FXML
-public void handleButtonUpdate() {
-
+public void handleButtonUpdate() throws IOException {
+    Visitor visitor= tableViewVisitors.getSelectionModel().getSelectedItem();
+    if (visitor!= null) {
+        boolean buttonConfirmarClicked = showFXMLAnchorPaneRegisterVisitorForm(visitor);
+        if (buttonConfirmarClicked) {
+            visitorsService.add(visitor);
+            loadTableViewVisitor();
+        }
+    } else {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Por favor, escolha um visitante na Tabela!");
+        alert.show();
+    }
 }
 }    
 	    

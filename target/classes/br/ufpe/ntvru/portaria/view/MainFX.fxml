@@ -14,7 +14,9 @@
             <items>
               <MenuItem fx:id="menuItemRegisterVisitor" mnemonicParsing="false" onAction="#handleMenuItemRegisterVisitor" text="Visitante" />
                   <MenuItem fx:id="menuItemCadastrosClientes" mnemonicParsing="false" onAction="#handleMenuItemRegisterVisitor" text="Veículo" />
-                  <MenuItem mnemonicParsing="false" text="Funcionário" />
+                  <MenuItem fx:id="menuItemRegisterWorker" mnemonicParsing="false" onAction="#handleMenuItemRegisterWorker" text="Funcionário" />
+                  <MenuItem fx:id="menuItemRegisterDepartment" mnemonicParsing="false" onAction="#handleMenuItemRegisterDepartment" text="Departamento" />
+                 
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Processos">

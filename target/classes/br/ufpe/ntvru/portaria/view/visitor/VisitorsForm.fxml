@@ -71,7 +71,7 @@
       </Group>
       <ImageView fx:id="imgViewTakePicture" fitHeight="150.0" fitWidth="160.0" layoutX="339.0" layoutY="43.0" onKeyPressed="#drawWebCamView" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../imgs/contacts-256.png" />
+            <Image url="@../../imgs/contacts-256.png" />
          </image>
       </ImageView>
       <Hyperlink layoutX="385.0" layoutY="193.0" onAction="#drawWebCamView" text="Fotografia" />

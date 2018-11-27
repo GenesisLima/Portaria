@@ -1,32 +1,23 @@
 
 package br.ufpe.ntvru.portaria.controller;
 
-import java.awt.Dimension;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamResolution;
-import com.github.sarxos.webcam.WebcamUtils;
-import com.github.sarxos.webcam.util.ImageUtils;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
-import br.ufpe.ntvru.portaria.helpers.Routes;
 import br.ufpe.ntvru.portaria.model.Vehicle;
 import br.ufpe.ntvru.portaria.model.Visitor;
 import br.ufpe.ntvru.portaria.repository.VisitorDAO;
 import br.ufpe.ntvru.portaria.service.ServiceStrategy;
 import br.ufpe.ntvru.portaria.service.ServiceStrategyImpl;
 import br.ufpe.ntvru.portaria.webcam.WebcamViewerExample;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,10 +30,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class VisitorsController implements Initializable {
@@ -300,13 +288,11 @@ public void searchVisitorOnEnter(ActionEvent e){
 
 public void loadTableViewVisitor() {
 	
-	//List<Visitor> visitorsList = visitorsService.getAll();
+	
 	List<Visitor> visitorsList = visitorsService.getAll();
 	ObservableList<Visitor> visitors = FXCollections.observableArrayList(visitorsList);
-	tableColumnVisitorName.setCellValueFactory(new PropertyValueFactory<>("name"));
-	tableColumnVisitorPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));  
-	//visitorsCpfColumn.cellValueFactoryProperty().setValue(new PropertyValueFactory<>("cpf"));
-	//visitorsAccountableColumn.setCellValueFactory(new PropertyValueFactory<>("accountable"));
+	tableColumnVisitorName.setCellValueFactory(new PropertyValueFactory<Visitor, String>("name"));
+	tableColumnVisitorPhone.setCellValueFactory(new PropertyValueFactory<Visitor, String>("phone"));  
 	
 	tableViewVisitors.setItems(visitors);
    
@@ -326,7 +312,7 @@ public void handleButtonInsert() throws IOException {
 
 public boolean showFXMLAnchorPaneRegisterVisitorForm(Visitor visitor) throws IOException {
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(VisitorsController.class.getResource("/br/ufpe/ntvru/portaria/view/VisitorsForm.fxml"));
+    loader.setLocation(VisitorsController.class.getResource("/br/ufpe/ntvru/portaria/view/visitor/VisitorsForm.fxml"));
     AnchorPane page = (AnchorPane) loader.load();
 
     

@@ -1,52 +1,29 @@
 package br.ufpe.ntvru.portaria.controller;
 
 
-import java.awt.Dimension;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
-import javax.swing.SwingUtilities;
-
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamResolution;
-import com.github.sarxos.webcam.WebcamUtils;
-import com.github.sarxos.webcam.util.ImageUtils;
+import org.controlsfx.control.textfield.TextFields;
 
 import br.ufpe.ntvru.portaria.helpers.Routes;
 import br.ufpe.ntvru.portaria.model.Visitor;
-import br.ufpe.ntvru.portaria.webcam.WebCamController;
 import br.ufpe.ntvru.portaria.webcam.WebcamViewerExample;
 import javafx.beans.property.ReadOnlyDoubleProperty;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import br.ufpe.ntvru.portaria.model.Visitor;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
-
 import javafx.stage.Stage;
 
 public class VisitorsFormController implements Initializable{
@@ -105,7 +82,11 @@ public class VisitorsFormController implements Initializable{
 	   
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+
+		TextFields.bindAutoCompletion(textFieldVisitorAccountable,"text to suggest", "another text to suggest","The third text to suggest");
+
+	           
+	
 		
 	}
 
@@ -135,6 +116,7 @@ public class VisitorsFormController implements Initializable{
 		textFieldVisitorName.setText(visitor.getName());
 		textFieldVisitorCpf.setText(visitor.getCpf());
 		textFieldVisitorPhone.setText(visitor.getPhone());
+		
 
 
 	}
@@ -263,7 +245,8 @@ public class VisitorsFormController implements Initializable{
 			  
 		  }
 	   
-
+  
+ 
 	 
 }
 

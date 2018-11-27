@@ -44,6 +44,17 @@ public class MainController implements Initializable{
         anchorPane.getChildren().setAll(a);
     }
 
-    
+	@FXML
+    public void handleMenuItemRegisterWorker() throws IOException {
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource(Routes.WORKERSVIEW));
+        anchorPane.getChildren().setAll(a);
+    }
+	
+	@FXML
+    public void handleMenuItemRegisterDepartment() throws IOException {
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource(Routes.DEPARTMENTSVIEW));
+        anchorPane.getChildren().setAll(a);
+    }
+	
 
 }

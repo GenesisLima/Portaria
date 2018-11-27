@@ -5,10 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 @Entity(name="p_department")
 public class Department implements Serializable {
 
 	@Id
+	@SequenceGenerator(name="pk_seq_department", sequenceName="p_seq_department", initialValue=1)
+	@Column(name="id_department", unique=true, nullable=false)
 	private int id;
 	
 	private String name;

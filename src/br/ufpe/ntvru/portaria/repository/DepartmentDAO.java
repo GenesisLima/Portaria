@@ -44,4 +44,10 @@ public class DepartmentDAO extends DAO<Department>{
 		return manager.createQuery("select d from p_department d where d.status='A' and d.name="+name, Department.class).getResultList();
 	}
 
+	@Override
+	public List<Department> getByNameLike(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

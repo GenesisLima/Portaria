@@ -41,5 +41,7 @@ public abstract class DAO<T> {
 	 public abstract T getById(int id);
 	 
 	 public abstract List<T> getByName(String name);
+	 
+	 public abstract List<T> getByNameLike(String name);
 	
 }

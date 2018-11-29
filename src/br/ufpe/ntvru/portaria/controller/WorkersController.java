@@ -67,18 +67,7 @@ public class WorkersController implements Initializable{
     
     
 
-    @FXML
-    public void searchVisitorOnEnter(ActionEvent e){
-             
-    	List<Worker> workersList = workersService.getAll();
-    	ObservableList<Worker> workers = FXCollections.observableArrayList(workersList);    	
-    	tableColumnWorkerName.setCellValueFactory(new PropertyValueFactory<>("name"));
-    	tableColumnWorkerPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-    	tableViewWorkers.setItems(workers);
-    	 
-    	
-    	 
-    }
+   
 
 
 
@@ -179,11 +168,16 @@ public class WorkersController implements Initializable{
     	//workersList.stream().map(w -> w.getPhone()).forEach(System.out::println);    	
     	ObservableList<Worker> workers = FXCollections.observableArrayList(workersList);
     	tableColumnWorkerName.setCellValueFactory(new PropertyValueFactory<Worker, String>("name"));
-    	tableColumnWorkerPhone.setCellValueFactory(new PropertyValueFactory<Worker, String>("phone"));  
-    	
-    	
+    	tableColumnWorkerPhone.setCellValueFactory(new PropertyValueFactory<Worker, String>("phone"));
+    
     	tableViewWorkers.setItems(workers);
        
     }
+    
+    
+    
+    
+    
+    
 }
 

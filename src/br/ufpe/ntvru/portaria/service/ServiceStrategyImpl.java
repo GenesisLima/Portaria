@@ -45,5 +45,10 @@ public class ServiceStrategyImpl<T> implements ServiceStrategy<T>{
 		
 		return dao.getByName(name);
 	}
+	@Override
+	public List<T> getByNameLike(String name) {
+		
+		return dao.getByNameLike(name);
+	}
 
 }

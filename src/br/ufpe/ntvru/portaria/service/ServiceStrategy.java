@@ -15,4 +15,6 @@ public interface ServiceStrategy<T> {
 	
 	public List<T> getByName(String name);
 	
+	public List<T> getByNameLike(String name);
+	
 }

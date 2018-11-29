@@ -45,4 +45,10 @@ public class UserDAO extends DAO<User>{
 		return null;
 	}
 
+	@Override
+	public List<User> getByNameLike(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

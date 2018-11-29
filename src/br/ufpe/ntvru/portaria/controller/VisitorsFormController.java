@@ -3,12 +3,20 @@ package br.ufpe.ntvru.portaria.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import org.controlsfx.control.textfield.TextFields;
 
+import br.ufpe.ntvru.portaria.component.ModalStage;
 import br.ufpe.ntvru.portaria.helpers.Routes;
 import br.ufpe.ntvru.portaria.model.Visitor;
+import br.ufpe.ntvru.portaria.model.Worker;
+import br.ufpe.ntvru.portaria.repository.WorkerDAO;
+import br.ufpe.ntvru.portaria.service.ServiceStrategy;
+import br.ufpe.ntvru.portaria.service.ServiceStrategyImpl;
 import br.ufpe.ntvru.portaria.webcam.WebcamViewerExample;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.ActionEvent;
@@ -73,6 +81,16 @@ public class VisitorsFormController implements Initializable{
 	    private boolean buttonConfirmClicked = false;
 	    
 	    private Visitor visitor;
+	    
+	    @FXML
+	    private Button buttonVisitorsAccountableSearch;
+	    
+	    
+	    
+	  private ServiceStrategy service = new ServiceStrategyImpl<Worker>(new WorkerDAO());
+
+	     private Worker worker;
+	    
 
 	    @FXML
 	    void handleButtonInsert(ActionEvent event) {
@@ -81,15 +99,26 @@ public class VisitorsFormController implements Initializable{
 
 	   
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		TextFields.bindAutoCompletion(textFieldVisitorAccountable,"text to suggest", "another text to suggest","The third text to suggest");
-
-	           
+	public void initialize(URL url, ResourceBundle resource) {
+		
+      textFieldVisitorAccountable.textProperty().addListener((observable, oldValue,newValue)-> {
+    	  if(textFieldVisitorAccountable.getText().length() > 3) {    		  
+		TextFields.bindAutoCompletion(textFieldVisitorAccountable, getTypedWorkersName(newValue)).setHideOnEscape(true);
+      }
+		});
+		
+          
 	
 		
 	}
 
+	private List<String> getTypedWorkersName(String workersName) {
+		ArrayList<String> values =  (ArrayList<String>) service.getByNameLike(workersName).stream().map(w -> ((Worker)w).getName()).collect(Collectors.toList());
+		return values;
+	}
+	
+	
+	
 	public Stage getDialogStage() {
 		return dialogStage;
 	}
@@ -138,13 +167,18 @@ public class VisitorsFormController implements Initializable{
 	            visitor.setCpf(textFieldVisitorCpf.getText().trim());
 	            visitor.setPhone(textFieldVisitorPhone.getText().trim());
 	            visitor.setProduct("TVU");
-	            visitor.setAccountable(textFieldVisitorAccountable.getText().trim());
+	            visitor.setAccountable((Worker) service.getByName(textFieldVisitorAccountable.getText().trim()).get(0));
 	            visitor.setAdditionalInfo(textAreaVisitorAdditionalInfo.getText().trim());
 	            
 
 	            buttonConfirmClicked = true;
+	            //Stage stage = (Stage)((Node)((EventObject) eventVariable).getSource()).getScene().getWindow();
+
+	            
 	            dialogStage.close();
 	       }
+	       
+	        
 
 	    }
 	 
@@ -245,8 +279,72 @@ public class VisitorsFormController implements Initializable{
 			  
 		  }
 	   
-  
- 
+  public void drawVisitorsAccountableModalView(ActionEvent event){
+	 
+	  ModalStage modalStage = new ModalStage(Routes.WORKERSSEARCHMODALVIEW, 400, 450);
+	  
+	  try {
+		modalStage.showModal((Button)event.getSource());
+		System.out.println("WORKER "+this.worker);
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	  
+//	  Stage stage = new Stage();
+//	 
+//	Parent root;
+//	try {
+//		root = FXMLLoader.load(getClass().getResource(Routes.WORKERSSEARCHMODALVIEW));
+//		 
+//		 stage.setScene(new Scene(root));
+//		   stage.setTitle("Pesquisar Funcionário");
+//		   stage.initModality(Modality.APPLICATION_MODAL);
+//		 
+//	} catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//	  
+//	  stage.showAndWait();
+		 
+	 
+	 
+  }
+
+
+public void setWorker(Worker worker) {
+	this.worker = worker;
+	textFieldVisitorAccountable.setText(worker.getName());
+	textFieldVisitorAccountable.commitValue();
+	//textFieldVisitorAccountable.setDisable(true);
+	
+//		Service<Void> service = new Service<Void>() {
+//        @Override
+//        protected Task<Void> createTask() {
+//            return new Task<Void>() {
+//                @Override
+//                protected Void call() throws Exception {
+//                    Platform.runLater(() ->{
+//                    	
+//                    	textFieldVisitorAccountable.appendText("test");
+//                    //	setText(worker.getName());
+//                    	textFieldVisitorAccountable.setDisable(true);
+//                    });
+//                    return null;
+//                }
+//            };
+//        }
+//    };
+//    service.start();
+	
+	
+}
+
+
+
+
+   
 	 
 }
 

@@ -8,11 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Transient;
 
 @Entity(name="p_visitor")
 public class Visitor implements Serializable{
@@ -39,7 +38,8 @@ public class Visitor implements Serializable{
 	
 	private String product;
 	
-	private String accountable;
+	@ManyToOne	
+	private Worker accountable;
 	
 	private String additionalInfo;
 
@@ -89,11 +89,13 @@ public class Visitor implements Serializable{
 		this.product = product;
 	}
 
-	public String getAccountable() {
+
+
+	public Worker getAccountable() {
 		return accountable;
 	}
 
-	public void setAccountable(String accountable) {
+	public void setAccountable(Worker accountable) {
 		this.accountable = accountable;
 	}
 

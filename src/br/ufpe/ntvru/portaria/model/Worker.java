@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 @Entity(name="p_worker")
+@NamedQuery(name = "Worker.findByNameAccountable", query = "SELECT w FROM p_worker w WHERE w.status = 'A' and w.name LIKE :name")
 public class Worker {
 
 	

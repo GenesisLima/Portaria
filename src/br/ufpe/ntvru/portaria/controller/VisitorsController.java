@@ -110,7 +110,7 @@ public class VisitorsController implements Initializable {
 	    
 	    private Vehicle vehicle;
 	    
-	    private ServiceStrategy<Visitor> visitorsService= new ServiceStrategyImpl<Visitor>(new VisitorDAO());
+	    private ServiceStrategy visitorsService= new ServiceStrategyImpl<>(new VisitorDAO());
 	    
 	    private ServiceStrategy<Vehicle> vehicleStrategy;
 

@@ -45,5 +45,13 @@ public class WorkerDAO extends DAO<Worker> {
 		
 	}
 
+	@Override
+	public List<Worker> getByNameLike(String name) {
+		
+		return  manager.createNamedQuery("Worker.findByNameAccountable").setParameter("name", "%"+name+"%").getResultList();
+				
+			//	createQuery("select a from p_worker a where a.status='A' and a.name like %'"+name+"%'",Worker.class).getResultList();
+	}
+
 
 }

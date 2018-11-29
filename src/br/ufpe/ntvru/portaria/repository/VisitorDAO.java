@@ -45,4 +45,10 @@ public class VisitorDAO extends DAO<Visitor> {
 		
 	}
 
+	@Override
+	public List<Visitor> getByNameLike(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
